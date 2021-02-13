@@ -1,0 +1,52 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-ligth morpheus-den-gradient color-block mb-3 mx-auto">
+   
+    <!--Navbar brand-->
+    <a class="navbar-brand" href="../">
+        <button type="button" class="btn btn-sm blue-gradient">Home</button></a>
+    <!--Collapse bouton-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data_target="#basicExempleNav" aria-control="basicExempleNav" aria-expended="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--collapside content-->
+    <div class="collapse navbar-collapse" id="basicExempleNav">
+        <!--Links-->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">
+                    <button type="button" class="btn btn-sm blue-gradient">Primary</button>
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <button type="button" class="btn btn-sm blue-gradient">Primary</button>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+            </li>
+            <!--Dropdown-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expended="false">Mon compte</a>
+                <div class="dropdown-menu dropdown-primary" aria-labeledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">something esle here</a>
+                </div>
+            </li>
+        </ul>
+        <!--Links-->
+        {% if user.is_authenticated %}
+        <a href="" class="btn btn-sm blue-gradient">Deconnexion</a>
+        {% else %}
+        <a href="{% url 'login-blog' %}" class="btn btn-sm blue-gradient">Connexion</a>
+        {% endif %}
+        
+        <form class="form-inline" action="{% url 'search' %}">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="article">
+            </div>
+        </form>
+    </div>
+</nav>

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+  <!-- Start your project here-->  
+    <h4 class="text-center mt-3 mb-5">Recherche: {{query}} , resultat</h4>
+    <!-- Card -->
+    <div class="container mb-4">
+        <div class="row">
+            {% if no_article %}
+            <div class="col-12 col-md-12 col-lg-8 col-xl-8">
+                <p class="col-12">Aucun article n'a ete trouver avec le mot cle {{query}}</p>
+                <!--<a href="{{ art_selected.image.url}}">
+                  <img class="col-12 col-md-12 col-lg-12 col-xl-12" src="{{ article.image.url}}" alt="Card image cap">
+                </a>-->
+                <i><strong>Conseil:</strong> essayer de recherche un seul mot: ex: pouvoir ou linux, cela fera ressortir tout les articles contenant ce mot</i>
+                
+            </div>
+            {% else %}
+            {% for art in list_res %}
+            <div class="card col-12 col-md-12 col-lg-4 col-xl-4">
+                <!-- Card image -->
+                {% if art.image.url == "http://default" %}
+                <a href="{% url 'detail' art.id %}">
+                  <img class="card-img-top" src="https://via.placeholder.com/468x500?text=My Blog" alt="Card image cap"  style="height:200px">
+                </a>
+                {% else %}
+
+                <a href="{% url 'detail' art.id %}">
+                  <img class="card-img-top" src="{{ art.image.url}}" alt="Card image cap"  style="height:200px">
+                </a>
+                {% endif %}
+                    
+              
+                <!-- Card content -->
+                <div class="card-body">
+              
+                  <!-- Title -->
+                    <h4 class="card-title"><a href="{% url 'detail' art.id %}">{{art.title}}</a></h4>
+                  <!-- Text -->
+                    <p class="card-text">{{art.desc|truncatewords:8}}</p>
+                    <p class="card-text">Publier il y a {{art.created_at|timesince}}</p>
+                  <!-- Button -->
+                    <a href="{% url 'detail' art.id %}" class="btn btn-primary">Lire l'article</a>
+              
+                </div>
+              
+              </div>
+            {% endfor %}
+            {% endif %}
+             
+            
+        </div>
+    </div>
+
+
+
+    
+
+  {% endblock %}
